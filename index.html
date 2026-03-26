@@ -1,297 +1,187 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>PONTE Negocios Inmobiliarios</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    :root{
-      --navy:#0f2f63;
-      --gold:#c79a3b;
-      --light:#f7f7f5;
-      --text:#243244;
-      --muted:#6b7280;
-      --border:#e6e8ec;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--light);color:var(--text)}
-    a{text-decoration:none;color:inherit}
-    .topbar{background:var(--navy);color:#fff;text-align:center;padding:10px 16px;font-size:14px;letter-spacing:.2px}
-    header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10}
-    .container{width:min(1180px,92%);margin:0 auto}
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 0}
-    .brand{display:flex;align-items:center;gap:14px}
-    .brand img{width:70px;height:70px;object-fit:contain;border-radius:10px;background:#fff}
-    .brand-text h1{margin:0;font-family:Georgia,"Times New Roman",serif;color:var(--navy);font-size:40px;line-height:1;letter-spacing:2px}
-    .brand-text p{margin:7px 0 0;color:var(--gold);text-transform:uppercase;font-size:12px;letter-spacing:2px}
-    nav{display:flex;flex-wrap:wrap;gap:18px;font-size:14px;color:var(--navy);text-transform:uppercase}
-    .hero{background:linear-gradient(rgba(15,47,99,.86),rgba(15,47,99,.82)),radial-gradient(circle at top left,rgba(255,255,255,.10),transparent 40%);color:#fff;padding:70px 0 60px}
-    .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center}
-    .hero h2{margin:0 0 18px;font-family:Georgia,"Times New Roman",serif;font-size:56px;line-height:1.05;font-weight:700}
-    .hero p{max-width:700px;margin:0 0 28px;font-size:18px;line-height:1.7;color:#eef2f7}
-    .buttons{display:flex;gap:14px;flex-wrap:wrap}
-    .btn{display:inline-block;padding:14px 18px;border-radius:12px;font-weight:700;font-size:15px;transition:.2s ease}
-    .btn-gold{background:var(--gold);color:#fff}
-    .btn-outline{border:1px solid rgba(255,255,255,.35);color:#fff}
-    .btn:hover,.mini-btn:hover,.wa-float:hover{transform:translateY(-1px)}
-    .hero-card{background:#fff;color:var(--text);border:1px solid rgba(255,255,255,.2);border-radius:18px;padding:24px;box-shadow:0 10px 24px rgba(0,0,0,.12)}
-    .hero-card h3{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;color:var(--navy);font-size:28px}
-    .hero-card ul{margin:0;padding-left:18px;line-height:1.85;color:#475467}
-    section{padding:64px 0}
-    .section-title{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;color:var(--navy);font-size:40px}
-    .section-lead{max-width:850px;color:var(--muted);line-height:1.75;font-size:17px;margin:0 0 28px}
-    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:14px}
-    .stat{background:#fff;border:1px solid var(--border);border-radius:16px;padding:18px;text-align:center;box-shadow:0 8px 18px rgba(15,47,99,.04)}
-    .stat strong{display:block;font-size:28px;color:var(--navy);font-family:Georgia,"Times New Roman",serif}
-    .stat span{display:block;margin-top:6px;font-size:14px;color:var(--muted)}
-    .properties{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-    .card{background:#fff;border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:0 10px 24px rgba(15,47,99,.05)}
-    .card-top{height:180px;background:linear-gradient(135deg,#dbe6f4,#eef2f7);display:flex;align-items:flex-end;padding:16px}
-    .badge{background:rgba(15,47,99,.94);color:#fff;padding:8px 12px;border-radius:999px;font-size:12px;text-transform:uppercase;letter-spacing:.4px}
-    .card-body{padding:20px}
-    .price{margin:0 0 8px;color:var(--navy);font-family:Georgia,"Times New Roman",serif;font-size:31px}
-    .card h3{margin:0 0 8px;font-family:Georgia,"Times New Roman",serif;font-size:25px;color:var(--text)}
-    .meta{color:#667085;font-size:14px;margin-bottom:12px}
-    .pitch{display:inline-block;background:#f3efe6;color:#8a6420;border:1px solid #ead7ab;padding:7px 10px;border-radius:999px;font-size:12px;font-weight:700;margin-bottom:12px}
-    .desc{color:#4b5563;line-height:1.7;font-size:15px;margin-bottom:18px}
-    .actions{display:flex;gap:10px;flex-wrap:wrap}
-    .mini-btn{display:inline-block;padding:10px 12px;border-radius:10px;font-size:14px;font-weight:700;border:1px solid var(--border);color:var(--navy);background:#fff;transition:.2s ease}
-    .mini-btn.primary{background:var(--navy);color:#fff;border-color:var(--navy)}
-    .featured{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-    .featured-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-    .featured-box{background:var(--light);border:1px solid var(--border);border-radius:18px;padding:24px}
-    .featured-box h3{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;color:var(--navy);font-size:30px}
-    .featured-box p,.featured-box li{color:#475467;line-height:1.75}
-    .featured-box ul{padding-left:18px;margin:14px 0 0}
-    .services{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-    .service{background:#fff;border:1px solid var(--border);border-radius:18px;padding:22px;box-shadow:0 8px 18px rgba(15,47,99,.04)}
-    .service h4{margin:0 0 10px;color:var(--navy);font-family:Georgia,"Times New Roman",serif;font-size:24px}
-    .service p{margin:0;color:#475467;line-height:1.7}
-    .capture{background:linear-gradient(135deg,#fff,#f6f8fb);border:1px solid var(--border);border-radius:22px;padding:28px;box-shadow:0 10px 24px rgba(15,47,99,.05)}
-    .capture h3{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;color:var(--navy);font-size:34px}
-    .capture p{margin:0 0 18px;color:#475467;line-height:1.75;max-width:850px}
-    footer{background:var(--navy);color:#fff;padding:42px 0;margin-top:12px}
-    .footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
-    .footer-brand{display:flex;align-items:center;gap:14px}
-    .footer-brand img{width:70px;height:70px;object-fit:contain;background:#fff;border-radius:12px;padding:5px}
-    .footer-brand strong{display:block;font-family:Georgia,"Times New Roman",serif;font-size:36px;letter-spacing:2px}
-    .footer-brand span,.footer-contact{color:#dbe4ef;line-height:1.8}
-    .wa-float{position:fixed;right:18px;bottom:18px;background:#25D366;color:#fff;font-weight:700;padding:14px 16px;border-radius:999px;box-shadow:0 10px 24px rgba(0,0,0,.18);z-index:30;transition:.2s ease}
-    @media (max-width:1100px){.hero-grid,.featured-grid,.footer-grid{grid-template-columns:1fr}.properties{grid-template-columns:1fr 1fr}.services{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr 1fr}}
-    @media (max-width:760px){.nav{flex-direction:column;align-items:flex-start}.hero h2{font-size:38px}.properties,.services,.stats{grid-template-columns:1fr}.section-title{font-size:32px}.brand-text h1{font-size:34px}}
-  </style>
+<meta charset="UTF-8">
+<title>PONTE Negocios Inmobiliarios</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+--navy:#0f2f63;
+--gold:#c79a3b;
+--light:#f7f7f5;
+--text:#243244;
+--muted:#6b7280;
+--border:#e6e8ec;
+}
+
+body{margin:0;font-family:Arial;background:var(--light);color:var(--text)}
+.container{width:92%;max-width:1100px;margin:auto}
+
+header{background:white;padding:20px;border-bottom:1px solid var(--border)}
+.brand{display:flex;align-items:center;gap:15px}
+.brand img{width:70px}
+.brand h1{margin:0;color:var(--navy)}
+.brand p{margin:0;color:var(--gold)}
+
+.hero{background:var(--navy);color:white;padding:60px 0}
+.hero h2{font-size:42px;margin-bottom:15px}
+.hero p{font-size:18px;line-height:1.6}
+
+.btn{display:inline-block;margin-top:15px;padding:12px 18px;border-radius:8px;font-weight:bold}
+.btn-gold{background:var(--gold);color:white}
+.btn-outline{border:1px solid white;color:white}
+
+.section{padding:50px 0}
+.section h2{color:var(--navy)}
+
+.card{background:white;padding:20px;border-radius:12px;margin-bottom:20px}
+.price{color:var(--navy);font-size:22px;font-weight:bold}
+
+.pitch{color:#8a6420;font-weight:bold;margin-bottom:10px}
+
+footer{background:var(--navy);color:white;padding:30px;margin-top:40px}
+
+</style>
 </head>
+
 <body>
-  <div class="topbar">PONTE · Negocios Inmobiliarios · Propiedades urbanas, inversión y oportunidades premium</div>
 
-  <header>
-    <div class="container nav">
-      <div class="brand">
-        <img src="logo.png" alt="Logo PONTE">
-        <div class="brand-text">
-          <h1>PONTE</h1>
-          <p>Negocios Inmobiliarios</p>
-        </div>
-      </div>
-      <nav>
-        <a href="#propiedades">Propiedades</a>
-        <a href="#destacados">Destacados</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#captacion">Captá con PONTE</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
-    </div>
-  </header>
+<header>
+<div class="container brand">
+<img src="logo.png">
+<div>
+<h1>PONTE</h1>
+<p>Negocios Inmobiliarios</p>
+</div>
+</div>
+</header>
 
-  <section class="hero">
-    <div class="container hero-grid">
-      <div>
-        <h2>Una marca inmobiliaria con criterio comercial y mirada estratégica.</h2>
-        <p>Propiedades seleccionadas en CABA, Recoleta, Palermo, Tigre y zona norte. Una propuesta pensada para mostrar oportunidades reales, acompañar la negociación y facilitar operaciones con criterio profesional.</p>
-        <div class="buttons">
-          <a class="btn btn-gold" href="#propiedades">Ver propiedades</a>
-          <a class="btn btn-outline" href="https://wa.me/5492346585167?text=Hola%2C%20te%20escribo%20desde%20la%20web%20de%20PONTE.%20Quiero%20hacer%20una%20consulta.">Consultar por WhatsApp</a>
-        </div>
-      </div>
-      <div class="hero-card">
-        <h3>PONTE hoy</h3>
-        <ul>
-          <li>Web profesional, liviana y online</li>
-          <li>Propiedades reales ya publicadas</li>
-          <li>WhatsApp directo para cada inmueble</li>
-          <li>Herramienta concreta para captar propietarios</li>
-          <li>Base sólida para seguir creciendo</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+<section class="hero">
+<div class="container">
+<h2>Propiedades seleccionadas con criterio comercial y acompañamiento integral</h2>
 
-  <section>
-    <div class="container">
-      <h2 class="section-title">Una prueba piloto que ya es operable</h2>
-      <p class="section-lead">Esta versión ya está lista para compartir. La idea ahora no es frenarte por perfeccionismo, sino salir a mostrar cartera, generar conversaciones y usar la web como respaldo comercial.</p>
-      <div class="stats">
-        <div class="stat"><strong>5</strong><span>Propiedades cargadas</span></div>
-        <div class="stat"><strong>CABA</strong><span>Palermo y Recoleta</span></div>
-        <div class="stat"><strong>Tigre</strong><span>Producto premium</span></div>
-        <div class="stat"><strong>WhatsApp</strong><span>Canal directo de consulta</span></div>
-      </div>
-    </div>
-  </section>
+<p>
+No solo mostramos propiedades.  
+Te acompañamos en todo el proceso: desde la búsqueda o publicación,
+hasta la negociación y la escritura, con respaldo legal y estratégico.
+</p>
 
-  <section id="propiedades">
-    <div class="container">
-      <h2 class="section-title">Propiedades destacadas</h2>
-      <p class="section-lead">Una primera selección de propiedades activas para compartir con clientes, contactos e interesados.</p>
+<a class="btn btn-gold" href="#propiedades">Ver propiedades</a>
+<a class="btn btn-outline" href="https://wa.me/5492346585167">Hablar por WhatsApp</a>
+</div>
+</section>
 
-      <div class="properties">
-        <article class="card">
-          <div class="card-top"><span class="badge">Palermo</span></div>
-          <div class="card-body">
-            <p class="price">USD 175.000</p>
-            <h3>Guise 1966</h3>
-            <div class="meta">64,67 m² · al frente · balcón · baulera</div>
-            <div class="pitch">Oportunidad cerca de Alto Palermo</div>
-            <div class="desc">Departamento muy luminoso, con excelente conectividad y ubicación estratégica a pasos de Alto Palermo.</div>
-            <div class="actions">
-              <a class="mini-btn primary" href="https://wa.me/5492346585167?text=Hola%2C%20te%20escribo%20por%20la%20propiedad%20de%20Guise%201966.%20%C2%BFPod%C3%A9s%20pasarme%20m%C3%A1s%20informaci%C3%B3n%3F">Consultar por Guise</a>
-            </div>
-          </div>
-        </article>
+<section class="section">
+<div class="container">
 
-        <article class="card">
-          <div class="card-top"><span class="badge">Palermo</span></div>
-          <div class="card-body">
-            <p class="price">USD 185.000</p>
-            <h3>Sánchez de Bustamante 1638</h3>
-            <div class="meta">3 ambientes · dependencia · contrafrente</div>
-            <div class="pitch">Ideal vivienda + home office</div>
-            <div class="desc">Excelente opción para vivienda o inversión. Silencio, privacidad, buena luz y escritorio/home office.</div>
-            <div class="actions">
-              <a class="mini-btn primary" href="https://wa.me/5492346585167?text=Hola%2C%20te%20escribo%20por%20la%20propiedad%20de%20S%C3%A1nchez%20de%20Bustamante%201638.%20%C2%BFPod%C3%A9s%20pasarme%20m%C3%A1s%20informaci%C3%B3n%3F">Consultar por Bustamante</a>
-            </div>
-          </div>
-        </article>
+<h2>¿Por qué elegir PONTE?</h2>
 
-        <article class="card">
-          <div class="card-top"><span class="badge">Recoleta</span></div>
-          <div class="card-body">
-            <p class="price">USD 185.000</p>
-            <h3>Rodríguez Peña 1533</h3>
-            <div class="meta">60 m² · 3° piso al frente · apto crédito</div>
-            <div class="pitch">Recoleta sólida para vivir o invertir</div>
-            <div class="desc">Muy buena luminosidad y ventilación natural en una ubicación consolidada, ideal para vivienda o inversión.</div>
-            <div class="actions">
-              <a class="mini-btn primary" href="https://wa.me/5492346585167?text=Hola%2C%20te%20escribo%20por%20la%20propiedad%20de%20Rodr%C3%ADguez%20Pe%C3%B1a%201533.%20%C2%BFPod%C3%A9s%20pasarme%20m%C3%A1s%20informaci%C3%B3n%3F">Consultar por Rodríguez Peña</a>
-            </div>
-          </div>
-        </article>
+<div class="card">
+<ul>
+<li>✔ Publicación clara y profesional de cada propiedad</li>
+<li>✔ Contacto directo y respuesta rápida por WhatsApp</li>
+<li>✔ Acompañamiento en toda la operación</li>
+<li>✔ Asesoramiento legal, notarial y estratégico</li>
+<li>✔ Seguimiento real hasta el cierre</li>
+</ul>
+</div>
 
-        <article class="card">
-          <div class="card-top"><span class="badge">Palermo</span></div>
-          <div class="card-body">
-            <p class="price">USD 130.000</p>
-            <h3>Vidt 1986</h3>
-            <div class="meta">2 ambientes y medio · 50 m² · 5° piso</div>
-            <div class="pitch">Muy buena entrada de valor en Palermo</div>
-            <div class="desc">Unidad luminosa, a la calle, sin balcón, muy cerca de Alto Palermo. Muy buena alternativa para primera vivienda.</div>
-            <div class="actions">
-              <a class="mini-btn primary" href="https://wa.me/5492346585167?text=Hola%2C%20te%20escribo%20por%20la%20propiedad%20de%20Vidt%201986.%20%C2%BFPod%C3%A9s%20pasarme%20m%C3%A1s%20informaci%C3%B3n%3F">Consultar por Vidt</a>
-            </div>
-          </div>
-        </article>
+</div>
+</section>
 
-        <article class="card">
-          <div class="card-top"><span class="badge">Premium · Benavídez</span></div>
-          <div class="card-body">
-            <p class="price">USD 210.000</p>
-            <h3>Vila Vela · Santa Teresa</h3>
-            <div class="meta">120 m² · jardín propio · vista a la laguna</div>
-            <div class="pitch">Calidad de vida + producto premium</div>
-            <div class="desc">Producto premium con excelente entorno, seguridad, amenities proyectados y una propuesta orientada a calidad de vida.</div>
-            <div class="actions">
-              <a class="mini-btn primary" href="https://wa.me/5492346585167?text=Hola%2C%20te%20escribo%20por%20la%20propiedad%20de%20Vila%20Vela%20en%20Santa%20Teresa.%20%C2%BFPod%C3%A9s%20pasarme%20m%C3%A1s%20informaci%C3%B3n%3F">Consultar por Vila Vela</a>
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
+<section id="propiedades" class="section">
+<div class="container">
 
-  <section class="featured" id="destacados">
-    <div class="container" style="padding:64px 0;">
-      <h2 class="section-title">Qué muestra bien esta web</h2>
-      <p class="section-lead">No solo sirve para mostrar inmuebles. También te posiciona para captar propiedades y respaldar conversaciones comerciales.</p>
-      <div class="featured-grid">
-        <div class="featured-box">
-          <h3>Para compradores</h3>
-          <p>Les permite ver de forma rápida una cartera inicial y entrar en contacto directo. Ya no sos solo una persona que ofrece algo, sino una marca con presencia concreta.</p>
-          <ul>
-            <li>Precio visible</li>
-            <li>Zona y perfil del producto claros</li>
-            <li>WhatsApp directo por propiedad</li>
-            <li>Lectura rápida y prolija</li>
-          </ul>
-        </div>
-        <div class="featured-box">
-          <h3>Para propietarios</h3>
-          <p>Es una herramienta de captación. Podés mostrar que ya estás publicando, ordenando cartera y trabajando inmuebles con una presentación profesional.</p>
-          <ul>
-            <li>Mejora tu imagen comercial</li>
-            <li>Da respaldo a tus publicaciones</li>
-            <li>Facilita conversaciones de exclusividad</li>
-            <li>Te diferencia de la informalidad</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+<h2>Propiedades disponibles</h2>
 
-  <section id="servicios">
-    <div class="container">
-      <h2 class="section-title">Servicios</h2>
-      <p class="section-lead">Una estructura pensada para acompañar operaciones, no solo para publicar propiedades.</p>
-      <div class="services">
-        <div class="service"><h4>Venta</h4><p>Presentación, publicación, visitas, negociación y acompañamiento comercial hasta el cierre.</p></div>
-        <div class="service"><h4>Captación</h4><p>Estrategia para incorporar nuevas propiedades y ofrecer una presentación más profesional.</p></div>
-        <div class="service"><h4>Inversión</h4><p>Búsqueda de oportunidades con criterio de producto, ubicación y potencial comercial.</p></div>
-        <div class="service"><h4>Asesoramiento</h4><p>Acompañamiento personalizado para ordenar la operación y generar más claridad al cliente.</p></div>
-      </div>
-    </div>
-  </section>
+<div class="card">
+<p class="price">USD 175.000</p>
+<h3>Guise 1966</h3>
+<div class="pitch">Oportunidad en Palermo</div>
+<p>Departamento luminoso con balcón, excelente ubicación.</p>
+<a class="btn btn-gold" href="https://wa.me/5492346585167?text=Consulta%20Guise">Consultar</a>
+</div>
 
-  <section id="captacion">
-    <div class="container">
-      <div class="capture">
-        <h3>¿Querés vender tu propiedad?</h3>
-        <p>En PONTE trabajamos cada propiedad con criterio comercial, buena presentación y seguimiento directo. Si estás evaluando vender, podés sumar tu unidad a una cartera ya activa y mostrada de forma profesional.</p>
-        <div class="actions">
-          <a class="mini-btn primary" href="https://wa.me/5492346585167?text=Hola%2C%20quiero%20publicar%20mi%20propiedad%20con%20PONTE.%20%C2%BFPodemos%20hablar%3F">Quiero publicar con PONTE</a>
-          <a class="mini-btn" href="https://wa.me/5492346585167?text=Hola%2C%20quiero%20hacer%20una%20consulta%20sobre%20venta%20de%20propiedad.">Hacer una consulta</a>
-        </div>
-      </div>
-    </div>
-  </section>
+<div class="card">
+<p class="price">USD 185.000</p>
+<h3>Bustamante 1638</h3>
+<div class="pitch">Ideal vivienda + home office</div>
+<p>3 ambientes con dependencia y excelente luz.</p>
+<a class="btn btn-gold" href="https://wa.me/5492346585167?text=Consulta%20Bustamante">Consultar</a>
+</div>
 
-  <footer id="contacto">
-    <div class="container footer-grid">
-      <div class="footer-brand">
-        <img src="logo.png" alt="Logo PONTE">
-        <div>
-          <strong>PONTE</strong>
-          <span>Negocios Inmobiliarios · Propiedades urbanas, inversión y oportunidades premium.</span>
-        </div>
-      </div>
-      <div class="footer-contact">
-        <strong>Contacto</strong><br>
-        WhatsApp: <a href="https://wa.me/5492346585167?text=Hola%2C%20te%20escribo%20desde%20la%20web%20de%20PONTE.">2346 58-5167</a><br>
-        Instagram: @ponte.negocios.inmobiliarios<br>
-        Base operativa: La Plata / Provincia de Buenos Aires
-      </div>
-    </div>
-  </footer>
+</div>
+</section>
 
-  <a class="wa-float" href="https://wa.me/5492346585167?text=Hola%2C%20te%20escribo%20desde%20la%20web%20de%20PONTE.">WhatsApp</a>
+<section class="section">
+<div class="container">
+
+<h2>Para compradores</h2>
+
+<div class="card">
+<p>
+Accedé a propiedades seleccionadas con información clara,
+acompañamiento profesional y asesoramiento durante todo el proceso.
+Desde la primera consulta hasta la escritura.
+</p>
+</div>
+
+<h2>Para propietarios</h2>
+
+<div class="card">
+<p>
+Vendé tu propiedad con respaldo real.  
+Nos ocupamos de todo el proceso: presentación, difusión, filtrado de interesados,
+negociación y acompañamiento legal y notarial hasta el cierre.
+</p>
+</div>
+
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+
+<h2>Servicios</h2>
+
+<div class="card">
+<p><strong>Venta:</strong> gestión completa de la operación</p>
+<p><strong>Captación:</strong> incorporación estratégica de propiedades</p>
+<p><strong>Inversión:</strong> búsqueda de oportunidades</p>
+<p><strong>Asesoramiento:</strong> acompañamiento legal y comercial</p>
+</div>
+
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+
+<h2>¿Querés vender tu propiedad?</h2>
+
+<div class="card">
+<p>
+Sumá tu propiedad a una cartera activa con presentación profesional
+y acompañamiento integral durante toda la operación.
+</p>
+
+<a class="btn btn-gold" href="https://wa.me/5492346585167?text=Quiero%20publicar%20mi%20propiedad">Publicar mi propiedad</a>
+</div>
+
+</div>
+</section>
+
+<footer>
+<div class="container">
+
+<img src="logo_legal.png" style="width:120px">
+
+<p>PONTE · Negocios Inmobiliarios</p>
+<p>WhatsApp: 2346 585167</p>
+
+</div>
+</footer>
+
 </body>
 </html>
